@@ -1,0 +1,27 @@
+.tarjeta{
+  width: 300px;
+  height: 200px;
+  /* background-color: #f8e32a; */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 2px 10px rgb(206, 205, 205);
+  margin-bottom: 10px;
+}
+.tarjeta h2 {
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.tarjeta .contenido {
+  overflow: auto;
+  padding: 0 5px;
+}
+.tarjeta .contenido p {
+  margin: 0;
+}
+
+.completo {
+  color: rgb(224, 222, 222);
+}

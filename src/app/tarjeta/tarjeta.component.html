@@ -1,0 +1,11 @@
+<div class="tarjeta" [style.background-color]="tarjeta.color" >
+    <h2>{{tarjeta.titulo}}</h2>
+    <div class="contenido">
+        <mat-checkbox
+        (change)="tareaToogle($event, tarjeta)"
+        [ngClass]="{'completo': tarea.completa}"
+        [checked]="tarea.completa"
+        *ngFor="let tarea of tarjeta.tareas">{{tarea.texto}}
+      </mat-checkbox>
+    </div>
+  </div>
