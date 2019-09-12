@@ -17,11 +17,29 @@
 .tarjeta .contenido {
   overflow: auto;
   padding: 0 5px;
+  flex: 1;
 }
 .tarjeta .contenido p {
   margin: 0;
+
 }
 
 .completo {
-  color: rgb(224, 222, 222);
+  color: rgb(167, 167, 167);
+  text-decoration: line-through;
+}
+
+.comandos {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tarjeta .texto-tarea {
+  flex: 1;
+  background-color: transparent;
+  border-style: none;
+}
+
+.tarjeta .tarea {
+  display: block;
 }

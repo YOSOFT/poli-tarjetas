@@ -6,7 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { ListaTarjetasComponent } from './lista-tarjetas/lista-tarjetas.component';
 import { TarjetaComponent } from './tarjeta/tarjeta.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCheckboxModule} from '@angular/material';
+import {MatCheckboxModule, MatButtonModule, MatIconModule} from '@angular/material';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { TarjetaEnMemoriaApiService } from './services/tarjeta-en-memoria-api.service';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,9 +20,13 @@ import {MatCheckboxModule} from '@angular/material';
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatButtonModule,
+    MatIconModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(TarjetaEnMemoriaApiService, {delay: 1000})
   ],
-  providers: [],
+  providers: [TarjetaEnMemoriaApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

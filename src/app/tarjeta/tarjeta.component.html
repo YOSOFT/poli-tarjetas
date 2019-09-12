@@ -2,10 +2,17 @@
     <h2>{{tarjeta.titulo}}</h2>
     <div class="contenido">
         <mat-checkbox
-        (change)="tareaToogle($event, tarjeta)"
+        class="tarea"
+        (change)="tareaToogle($event, indice)"
         [ngClass]="{'completo': tarea.completa}"
         [checked]="tarea.completa"
-        *ngFor="let tarea of tarjeta.tareas">{{tarea.texto}}
+        *ngFor="let tarea of tarjeta.tareas; let indice = index">{{tarea.texto}}
       </mat-checkbox>
+    </div>
+    <div class="comandos" class="comandos">
+      <input type="text" placeholder="agregar tarea" class="texto-tarea" [(ngModel)]="textoTarea">
+      <button mat-icon-button (click)="agregarTarea(tarjeta)" >
+        <mat-icon>add</mat-icon>
+      </button>
     </div>
   </div>

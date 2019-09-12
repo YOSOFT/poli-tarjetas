@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Tarjeta } from '../tarjeta';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientTarjetaService } from '../services/http-client-tarjeta.service';
+
 
 @Component({
   selector: 'app-lista-tarjetas',
@@ -7,56 +10,24 @@ import { Tarjeta } from '../tarjeta';
   styleUrls: ['./lista-tarjetas.component.css']
 })
 export class ListaTarjetasComponent implements OnInit {
-  tarjetas: Tarjeta[] = [
-    {
-      titulo: 'Diseño',
-      completa: false,
-      color: '#f8e32a',
-      tareas: [
-        { texto: 'analisis de requerimientos', completa: false },
-        { texto: 'diseño', completa: false },
-        { texto: 'implementación prototipo', completa: false },
-        { texto: 'pruebas unitarias', completa: false }
-      ]
-    },
-    {
-      titulo: 'Implementación',
-      completa: false,
-      color: '#f8dd2a',
-      tareas: [
-        { texto: 'analisis de requerimientos', completa: false },
-        { texto: 'diseño', completa: false },
-        { texto: 'implementación prototipo', completa: false },
-        { texto: 'pruebas unitarias', completa: false }
-      ]
-    },
-    {
-      titulo: 'Pruebas unitarias',
-      completa: false,
-      color: '#f8aa22',
-      tareas: [
-        { texto: 'analisis de requerimientos', completa: true },
-        { texto: 'diseño', completa: false },
-        { texto: 'implementación prototipo', completa: false },
-        { texto: 'pruebas unitarias', completa: false }
-      ]
-    },
-    {
-      titulo: 'Producción',
-      completa: false,
-      color: '#f8cccc',
-      tareas: [
-        { texto: 'analisis de requerimientos', completa: false },
-        { texto: 'diseño', completa: false },
-        { texto: 'implementación prototipo', completa: true },
-        { texto: 'pruebas unitarias', completa: false }
-      ]
-    }
-  ];
-  constructor() {}
+  tarjetas: Tarjeta[] = [];
 
-  ngOnInit() {}
-  tareaCompletas($evento) {
-    console.log($evento);
+  apiUrl = 'api/tarjetas';
+  constructor(
+    private http: HttpClient,
+    private servicioTarjetas: HttpClientTarjetaService) {}
+
+  ngOnInit() {
+    this.servicioTarjetas.obtenerTarjetas().subscribe(
+      res => {
+        console.log('desde servicio', res);
+        this.tarjetas = res;
+      }
+    );
+  }
+  tareaCompletas(tarjeta) {
+    console.log(tarjeta);
+    const indice = this.tarjetas.findIndex(t => t === tarjeta);
+    this.tarjetas.splice(indice, 1);
   }
 }
